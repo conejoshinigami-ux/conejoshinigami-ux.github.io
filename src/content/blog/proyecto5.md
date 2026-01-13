@@ -2,7 +2,7 @@
 title: "Portfolio Personal"
 description: "Sitio web personal para mostrar proyectos y experiencia"
 date: 2024-05-15
-cover: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"
+cover: "/img/blog/port.jpeg"
 tags: ["portfolio", "astro", "frontend"]
 ---
 

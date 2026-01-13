@@ -1,26 +1,28 @@
 ---
-title: "Sistema de Automatización"
-description: "Automatización de tareas administrativas"
-date: 2024-04-02
-cover: "https://images.unsplash.com/photo-1518770660439-4636190af475"
-tags: ["automatizacion", "scripts", "productividad"]
+title: "Taller de Fundamentos de Linux"
+description: "Capacitación práctica sobre el uso y administración básica de Linux"
+date: 2024-05-16
+cover: "/img/blog/kali.jpeg"
+tags: ["linux", "taller", "sistemas", "tecnologia"]
 ---
 
-Proyecto enfocado en **reducir tareas repetitivas** mediante automatización.
+Este proyecto consiste en la realización de un **Taller de Fundamentos de Linux**, enfocado en enseñar los **conceptos básicos del sistema operativo Linux** y su uso en entornos académicos y técnicos.
 
-## Automatizaciones realizadas
+## ¿Qué se aprende en el taller?
 
-- Backups automáticos
-- Limpieza de logs
-- Despliegues básicos
-- Monitoreo de servicios
+- Uso de la terminal  
+- Navegación de archivos  
+- Gestión de procesos  
+- Instalación de software  
+- Comandos básicos  
 
-## Herramientas
+## Herramientas utilizadas
 
-- Bash
-- Python
-- Cron Jobs
+- Linux  
+- Terminal Bash  
+- Distribuciones Linux  
+- Comandos GNU  
 
 ## Beneficio
 
-Ahorro de tiempo y reducción de errores humanos.
+Fortalecer las habilidades de los participantes en el uso de **sistemas operativos Linux**, facilitando su adopción en entornos de desarrollo y administración de sistemas.

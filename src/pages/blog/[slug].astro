@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 import "../../styles/global.css";
 import "../../styles/blog.css";
 
-/* 🔥 Esto evita el error getStaticPathss */
+/* 🔥 Static paths */
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
 
@@ -16,9 +16,21 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const posts = await getCollection("blog");
-const post = posts.find(p => p.slug === slug);
+
+/* Ordenamos por fecha si existe */
+const sortedPosts = posts.sort((a, b) => {
+  const da = new Date(a.data.date || 0).getTime();
+  const db = new Date(b.data.date || 0).getTime();
+  return da - db;
+});
+
+const postIndex = sortedPosts.findIndex(p => p.slug === slug);
+const post = sortedPosts[postIndex];
 
 if (!post) throw new Error("Post no encontrado");
+
+const prevPost = postIndex > 0 ? sortedPosts[postIndex - 1] : null;
+const nextPost = postIndex < sortedPosts.length - 1 ? sortedPosts[postIndex + 1] : null;
 
 const { Content } = await post.render();
 ---
@@ -52,19 +64,16 @@ const { Content } = await post.render();
         animation: fadeUp 1s ease forwards;
       }
 
-      /* 🔥 CONTENEDOR REAL DEL POST */
       .post-container {
         max-width: 900px;
         margin: 0 auto;
       }
 
-      /* 🔥 CONTENIDO MARKDOWN */
       .prose {
         max-width: 720px;
         margin: auto;
       }
 
-      /* 🔥 IMÁGENES DEL MARKDOWN */
       .prose img {
         width: 100%;
         max-width: 100%;
@@ -76,12 +85,52 @@ const { Content } = await post.render();
           0 0 40px rgba(0,217,255,.35);
       }
 
-      /* 🔥 Evita que se estiren dentro del <p> */
       .prose > p > img {
         max-width: 720px;
         margin-left: auto;
         margin-right: auto;
         display: block;
+      }
+
+      /* 🔥 BOTONES CYBER */
+      .cyber-btn {
+        position: relative;
+        padding: 1rem 2.2rem;
+        border-radius: 999px;
+        font-weight: 700;
+        color: #67e8f9;
+        background: #0b0f1a;
+        border: 1px solid rgba(0,217,255,0.3);
+        box-shadow: 0 0 30px #00d9ff33;
+        transition: all .4s ease;
+        overflow: hidden;
+      }
+
+      .cyber-btn:hover {
+        box-shadow: 0 0 60px #00d9ffaa;
+        transform: scale(1.05);
+      }
+
+      .cyber-btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,217,255,.15);
+        filter: blur(25px);
+        opacity: 0;
+        transition: .4s;
+      }
+
+      .cyber-btn:hover::after {
+        opacity: 1;
+      }
+
+      .nav-grid {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 1.5rem;
+        margin-top: 5rem;
+        align-items: center;
       }
     </style>
   </head>
@@ -91,7 +140,6 @@ const { Content } = await post.render();
     <!-- HEADER -->
     <header class="hero-fixed">
       <Navbar />
-
       <div class="max-w-6xl mx-auto px-6 pt-20 pb-14 text-center fade-up">
         <h1 class="text-5xl md:text-6xl font-extrabold text-white">
           {post.data.title}
@@ -121,10 +169,34 @@ const { Content } = await post.render();
           <Content />
         </article>
 
+        <!-- NAVEGACIÓN -->
+        <div class="nav-grid">
+
+          <div class="flex justify-start">
+            {prevPost && (
+              <a href={`/blog/${prevPost.slug}`} class="cyber-btn">
+                ◀ Entrada anterior
+              </a>
+            )}
+          </div>
+
+          <a href="/blog" class="cyber-btn">
+            ← Proyectos e Ideas
+          </a>
+
+          <div class="flex justify-end">
+            {nextPost && (
+              <a href={`/blog/${nextPost.slug}`} class="cyber-btn">
+                Entrada siguiente ▶
+              </a>
+            )}
+          </div>
+
+        </div>
+
       </div>
     </main>
 
     <Footer />
-
   </body>
 </html>
