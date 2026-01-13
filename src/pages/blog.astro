@@ -1,0 +1,89 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+import "../styles/global.css";
+import "../styles/blog.css";
+
+const posts = await getCollection("blog");
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Luis Antonio</title>
+
+    <style>
+      body {
+        background: radial-gradient(circle at top center, #0f111a, #08090e);
+      }
+
+      header.hero-fixed {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: rgba(10,10,15,0.75);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0,217,255,0.12);
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(25px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up {
+        animation: fadeUp 1s ease forwards;
+      }
+    </style>
+  </head>
+
+  <body class="font-sans text-gray-200 min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="hero-fixed">
+      <Navbar />
+
+      <div class="max-w-6xl mx-auto px-6 pt-20 pb-14 text-center fade-up">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white">
+          Blog &
+          <span class="text-[#00d9ff] drop-shadow-[0_0_12px_#00d9ff88]">Proyectos</span>
+        </h1>
+      </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="flex-grow max-w-7xl mx-auto px-6 pb-32 fade-up">
+
+      <section class="blog-page">
+
+        <h2 class="blog-title-page">
+          Proyectos e Ideas
+        </h2>
+
+        <div class="blog-grid">
+          {posts.map(post => (
+            <a href={`/blog/${post.slug}`} class="blog-card">
+              <img 
+                src={post.data.cover}
+                alt={post.data.title}
+                class="blog-thumb"
+                loading="lazy"
+              />
+
+              <div class="blog-body">
+                <div class="blog-title">{post.data.title}</div>
+                <div class="blog-desc">{post.data.description}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      </section>
+
+    </main>
+
+    <Footer />
+
+  </body>
+</html>

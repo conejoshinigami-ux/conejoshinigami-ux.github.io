@@ -1,0 +1,130 @@
+---
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+import "../../styles/global.css";
+import "../../styles/blog.css";
+
+/* 🔥 Esto evita el error getStaticPaths */
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map(post => ({
+    params: { slug: post.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const posts = await getCollection("blog");
+const post = posts.find(p => p.slug === slug);
+
+if (!post) throw new Error("Post no encontrado");
+
+const { Content } = await post.render();
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{post.data.title} | Luis Antonio</title>
+
+    <style>
+      body {
+        background: radial-gradient(circle at top center, #0f111a, #08090e);
+      }
+
+      header.hero-fixed {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: rgba(10,10,15,0.75);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0,217,255,0.12);
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(25px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .fade-up {
+        animation: fadeUp 1s ease forwards;
+      }
+
+      /* 🔥 CONTENEDOR REAL DEL POST */
+      .post-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* 🔥 CONTENIDO MARKDOWN */
+      .prose {
+        max-width: 720px;
+        margin: auto;
+      }
+
+      /* 🔥 IMÁGENES DEL MARKDOWN */
+      .prose img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 1.5rem;
+        margin: 3rem 0;
+        object-fit: cover;
+        box-shadow:
+          0 0 0 1px rgba(0,217,255,.25),
+          0 0 40px rgba(0,217,255,.35);
+      }
+
+      /* 🔥 Evita que se estiren dentro del <p> */
+      .prose > p > img {
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body class="font-sans text-gray-200 min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="hero-fixed">
+      <Navbar />
+
+      <div class="max-w-6xl mx-auto px-6 pt-20 pb-14 text-center fade-up">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white">
+          {post.data.title}
+        </h1>
+
+        {post.data.description && (
+          <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+            {post.data.description}
+          </p>
+        )}
+      </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="flex-grow px-6 pb-32 fade-up">
+      <div class="post-container">
+
+        {post.data.cover && (
+          <img
+            src={post.data.cover}
+            alt={post.data.title}
+            class="w-full rounded-2xl mb-12 shadow-[0_0_40px_#00d9ff22]"
+          />
+        )}
+
+        <article class="prose prose-invert prose-cyan">
+          <Content />
+        </article>
+
+      </div>
+    </main>
+
+    <Footer />
+
+  </body>
+</html>

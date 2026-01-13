@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../layouts/IndexLayouts.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+---
+
+<BaseLayout title="Blog">
+  <section class="blog-hero">
+    <h1>Blog & Proyectos</h1>
+    <p>Desarrollo, UI y sistemas</p>
+  </section>
+
+  <section class="blog-grid">
+    {posts.map(post => (
+      <a href={`/blog/${post.slug}`} class="post-card">
+
+        <div class="image-wrap">
+          <img src={post.data.cover} alt={post.data.title} />
+        </div>
+
+        <div class="card-body">
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+          <span>Leer proyecto →</span>
+        </div>
+
+      </a>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+.blog-hero {
+  text-align: center;
+  padding: 5rem 2rem 2rem;
+}
+.blog-hero h1 {
+  font-size: 2.6rem;
+  color: #7dd3fc;
+}
+.blog-hero p {
+  color: #94a3b8;
+}
+
+/* GRID */
+.blog-grid {
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem 2rem 6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+/* CARD */
+.post-card {
+  background: #020617;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  border: 1px solid rgba(56,189,248,.15);
+  transition: all .35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(56,189,248,.3);
+}
+
+/* 🔥 IMAGEN CONTROLADA */
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* CONTENIDO */
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-body h2 {
+  color: #7dd3fc;
+  font-size: 1.2rem;
+  margin-bottom: .4rem;
+}
+
+.card-body p {
+  color: #94a3b8;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.card-body span {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #38bdf8;
+  font-weight: 600;
+}
+</style>

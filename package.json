@@ -9,9 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.4.2",
     "@tailwindcss/vite": "^4.1.15",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "astro": "^5.14.7",
     "parse-latin": "^7.0.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "retext-latin": "^4.0.0"
   },
   "devDependencies": {

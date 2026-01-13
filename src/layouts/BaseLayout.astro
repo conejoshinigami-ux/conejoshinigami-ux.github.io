@@ -3,19 +3,25 @@ import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "Blog de Luis Dev", children } = Astro.props;
+
+
+const { title = "Blog de Luis Dev" } = Astro.props;
 ---
+
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
   </head>
+
   <body>
     <Navbar />
+
     <main class="max-w-6xl mx-auto px-6 pt-32 pb-20 fade-in">
-      {children}
+      <slot />   <!-- AQUÍ se insertan tus páginas -->
     </main>
+
     <Footer />
   </body>
 </html>

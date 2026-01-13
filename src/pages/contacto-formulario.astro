@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/molecules/ContactForm.jsx";
+import "../styles/contacto.css";
+---
+
+<Layout title="Contacto">
+  <div class="center-viewport">
+    <div class="card">
+      <h2 class="title">Contáctame</h2>
+      <ContactForm client:load />
+    </div>
+  </div>
+</Layout>
