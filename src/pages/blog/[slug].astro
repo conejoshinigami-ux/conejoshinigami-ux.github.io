@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 import "../../styles/global.css";
 import "../../styles/blog.css";
 
-/* 🔥 Esto evita el error getStaticPaths */
+/* 🔥 Esto evita el error getStaticPathss */
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
 
