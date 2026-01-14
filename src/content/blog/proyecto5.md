@@ -6,7 +6,7 @@ cover: "/img/blog/port.jpeg"
 tags: ["portfolio", "astro", "frontend"]
 ---
 
-Diseño y desarrollo de mi **portfolio personal**, enfocado en velocidad y claridad.
+Diseño y desarrollo de mi **portfolio personal**, enfocado en velocidad y claridad
 
 ## Características
 
