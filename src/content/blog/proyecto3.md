@@ -1,26 +1,30 @@
 ---
-title: "Plataforma Educativa Online"
-description: "Sistema web para cursos y contenido educativo"
-date: 2024-03-10
-cover: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
-tags: ["educacion", "web", "plataforma"]
+title: "Torneo de Robots"
+description: "Competencia académica de robótica e ingeniería en la UMB"
+date: 2024-12-05
+cover: "/img/blog/robots.jpeg"
+
+tags: ["robotica", "umb", "ingenieria", "tecnologia"]
 ---
 
-Plataforma diseñada para **publicar cursos y material educativo** de forma sencilla.
+Este proyecto consiste en la participación en el **Torneo de Robots de la UMB San José del Rincón**, enfocado en el **diseño, construcción y programación de robots** para resolver distintos retos técnicos.
 
-## Funcionalidades
+## ¿Qué hago en el torneo?
 
-- Publicación de cursos
-- Progreso del estudiante
-- Contenido en Markdown
-- Acceso responsive
+- Diseño estructural del robot  
+- Programación de movimientos y lógica  
+- Integración de sensores  
+- Pruebas y ajustes de funcionamiento  
+- Competencia contra otros equipos  
 
-## Tecnologías
+## Tecnologías y herramientas
 
-- Astro
-- Markdown
-- Supabase
+- Microcontroladores  
+- Sensores  
+- Motores y actuadores  
+- Programación básica  
+- Electrónica  
 
-## Impacto
+## Objetivo
 
-Proyecto pensado para instituciones pequeñas y creadores de contenido.
+Desarrollar habilidades en **robótica, ingeniería y trabajo en equipo**, aplicando conocimientos técnicos en un entorno real de competencia.

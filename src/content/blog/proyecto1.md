@@ -1,27 +1,29 @@
 ---
-title: "Laboratorio de Ciberseguridad"
-description: "Entorno práctico para pruebas de pentesting y hardening"
-date: 2024-01-12
-cover: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b"
-tags: ["ciberseguridad", "pentesting", "linux"]
+title: "Semana Académica"
+description: "Evento académico en el Aula Magna de la UMB enfocado en ciencia, tecnología e innovación"
+date: 2025-12-01
+cover: "/img/blog/semana.jpeg"
+tags: ["umb", "educacion", "academico", "tecnologia"]
 ---
 
-Este proyecto consiste en un laboratorio personal enfocado en **seguridad informática ofensiva y defensiva**.
+Este proyecto consiste en la **Semana Académica de la Universidad Mexiquense del Bicentenario**, realizada en el **Aula Magna de la sede San José del Rincón**, enfocada en la **difusión del conocimiento, la tecnología y la innovación**.
 
-## ¿Qué hago en el laboratorio?
+## ¿Qué se realiza en la semana académica?
 
-- Escaneo de puertos y servicios
-- Explotación de vulnerabilidades conocidas
-- Hardening de sistemas Linux
-- Simulación de ataques reales
+- Conferencias magistrales  
+- Presentación de proyectos  
+- Ponencias estudiantiles  
+- Exhibiciones tecnológicas  
+- Actividades académicas  
 
-## Tecnologías y herramientas
+## Temas y áreas
 
-- Kali Linux
-- Metasploit
-- Nmap
-- VirtualBox
+- Ciencia y tecnología  
+- Ingeniería  
+- Innovación  
+- Educación  
+- Desarrollo profesional  
 
 ## Objetivo
 
-Mejorar habilidades prácticas en ciberseguridad mediante escenarios controlados y reales.
+Fortalecer la **formación académica de los estudiantes**, promoviendo el aprendizaje, la investigación y el intercambio de ideas en un entorno universitario formal.
